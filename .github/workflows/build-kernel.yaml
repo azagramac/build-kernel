@@ -42,7 +42,7 @@ jobs:
           echo "✅ Kernel source extracted to kernel_build/"
 
       - name: ⚙️ Apply custom .config
-        run: cp .config kernel_build/.config
+        run: cp config-6.1.0-38 kernel_build/.config
 
       - name: 📝 Configure git user for deb-pkg
         run: |
