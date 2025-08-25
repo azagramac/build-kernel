@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       GIT_NAME: ${{ secrets.FULLNAME }}
       GIT_MAIL: ${{ secrets.GIT_MAIL }}
@@ -44,6 +44,18 @@ jobs:
 
       - name: ⚙️ Apply custom .config
         run: cp config-6.1.0-38 kernel_build/.config
+
+      - name: ⚡ Apply optimized Ryzen9 patch
+        run: |
+          cd kernel_build
+          # Verifica si el patch se puede aplicar
+          if patch -p1 --dry-run < ../optimized-ryzen9.patch; then
+            echo "✅ Patch applies cleanly, applying..."
+            patch -p1 < ../optimized-ryzen9.patch
+          else
+            echo "❌ Patch failed to apply, aborting."
+            exit 1
+          fi
 
       - name: 📝 Configure git user for deb-pkg
         run: |
