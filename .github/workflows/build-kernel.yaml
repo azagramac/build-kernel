@@ -50,6 +50,8 @@ jobs:
           git init
           git config user.name "$GIT_NAME"
           git config user.email "$GIT_MAIL"
+          git add -A
+          git commit -m "Initial kernel import"
 
       - name: 🏗️ Build .deb packages
         run: |
