@@ -18,8 +18,9 @@ jobs:
 
       - name: 🐙 Install build dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential fakeroot wget bzip2 bc bison flex rsync libelf-dev libssl-dev jq xz-utils libncurses-dev dwarves git debhelper 
+          sudo apt update
+          sudo apt install -y build-essential fakeroot wget bzip2 bc bison flex rsync \
+            libelf-dev libdw-dev libssl-dev libncurses-dev xz-utils dwarves git debhelper jq python3
 
       - name: 🌐 Get latest stable kernel version
         id: kernel
