@@ -71,11 +71,13 @@ jobs:
           cd kernel_build
           make olddefconfig
           make -j$(nproc) deb-pkg LOCALVERSION=-ryzen9
+          mkdir -p ../deb-artifacts
+          cp ../*.deb ../deb-artifacts/
           echo "🎉 Kernel DEB packages built successfully"
 
       - name: 📦 Upload DEB artifacts
         uses: actions/upload-artifact@v4
         with:
           name: kernel-debs
-          path: ../*.deb
+          path: deb-artifacts/*.deb
           
